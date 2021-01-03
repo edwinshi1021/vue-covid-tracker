@@ -3,7 +3,7 @@
     <input
       class="form-control me-2"
       type="search"
-      placeholder="Enter Country"
+      placeholder="Enter a Country"
       aria-label="Search"
       @input="setInput"
     />
@@ -14,7 +14,7 @@
     </div>
 
     <div v-if="errorMsg === true" class="alert alert-danger mt-3" role="alert">
-      Please enter a country!
+      Please enter a valid country name!
     </div>
 
     <div v-if="country !== null" class="card mt-3">
@@ -107,13 +107,17 @@ export default {
       if (this.searchInput === "") {
         this.errorMsg = true;
       } else {
-        const res = await axios.get(
-          `https://disease.sh/v3/covid-19/countries/${this.searchInput}?strict=true`
-        );
-        if (res.status === 200) {
+        try {
+          const res = await axios.get(
+            `https://disease.sh/v3/covid-19/countries/${this.searchInput}?strict=true`
+          );
+
           this.country = res.data;
           this.searchInput = "";
           this.errorMsg = false;
+        } catch (err) {
+          console.log(err);
+          this.errorMsg = true;
         }
       }
     },

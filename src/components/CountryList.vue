@@ -1,5 +1,5 @@
 <template>
-  <div class="col"> 
+  <div class="col">
     <h3>Total Cases:</h3>
     <ul class="list-group" v-if="isLoading === false && isLoading !== null">
       <li
