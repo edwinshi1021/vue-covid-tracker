@@ -38,7 +38,7 @@
           <li
             class="list-group-item d-flex justify-content-between align-items-center"
           >
-            Drecovered
+            Recovered
             <span class="badge bg-danger">{{ country.recovered }}</span>
           </li>
 
